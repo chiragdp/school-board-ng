@@ -1,0 +1,36 @@
+<div
+  class="flex justify-content-center min-h-screen align-items-center flex-column"
+>
+  <img src="/assets/logo.png" alt="logo" class="h-8rem -mb-6 z-1" />
+  <p-panel class="sm:w-full md:w-5 lg:w-3 xl:w-3 mt-2">
+    <ng-template pTemplate="header">
+      <h2 class="m-0">Register</h2>
+    </ng-template>
+    <div class="flex flex-column gap-2">
+      <label htmlFor="name">Name</label>
+      <input pInputText id="name" />
+      <label htmlFor="username">Username</label>
+      <input pInputText id="username" />
+      <label htmlFor="username">Password</label>
+      <p-password
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        [feedback]="true"
+        [toggleMask]="true"
+      ></p-password>
+      <p-button label="Register" icon="pi pi-lock" iconPos="right"></p-button>
+    </div>
+    <ng-template pTemplate="footer">
+      <p class="text-center">
+        Already have Account?
+        <a routerLink="/auth/login" class="text-blue-500 no-underline"
+          >Login!</a
+        >
+      </p>
+    </ng-template>
+  </p-panel>
+</div>
+
+<ng-template #userLoginIcon>
+  <i class="pi pi-user" style="font-size: 2.5rem"></i>
+</ng-template>

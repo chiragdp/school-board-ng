@@ -1,0 +1,48 @@
+<p-card>
+  <p-confirmPopup></p-confirmPopup>
+  <ng-template pTemplate="header">
+    <div class="p-4 pb-0 flex justify-content-between align-items-center">
+      <h2 class="m-0">Anouncements</h2>
+      <a
+        [routerLink]="['..', 'anouncements', 'new']"
+        class="no-underline"
+        pButton
+        label="New Anouncement"
+        icon="pi pi-pencil"
+      ></a>
+    </div>
+  </ng-template>
+  <p-table [value]="anouncements" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>id</th>
+        <th>Title</th>
+        <th>Uploaded At</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-anouncement>
+      <tr>
+        <td>{{ anouncement.id }}</td>
+        <td>{{ anouncement.title }}</td>
+        <td>{{ anouncement.uploadDate | date }}</td>
+        <td class="flex gap-3">
+          <a
+            [routerLink]="['..', 'anouncements', 'edit', anouncement.id]"
+            icon="pi pi-pencil"
+            label="Update"
+            class="p-button-warning no-underline"
+            pButton
+          ></a>
+          <button
+            icon="pi pi-trash"
+            label="Delete"
+            class="p-button-danger"
+            pButton
+            (click)="confirm($event, anouncement.id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

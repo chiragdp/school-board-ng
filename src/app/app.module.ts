@@ -1,18 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+// for HttpClient import:
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+
+// for Router import:
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+
+// for Core import:
+import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    HttpClientModule,
+    // for HttpClient use:
+    LoadingBarHttpClientModule,
+
+    // for Router use:
+    LoadingBarRouterModule,
+
+    // for Core use:
+    LoadingBarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,42 @@
+<div class="md:w-8 lg:w-8 mx-auto">
+  <h1>Feeds</h1>
+  <div class="feeds">
+    <ng-container
+      *ngIf="!loading && feedsObj.feeds.length > 0; else loadingCondition"
+    >
+      <div *ngFor="let feed of feedsObj.feeds">
+        <div style="border: 1px solid black">
+          <p-card [header]="feed.title">
+            <a
+              [routerLink]="['/feed', 'anouncements', feed.id]"
+              pButton
+              label="View"
+              class="no-underline"
+              icon="pi pi-eye"
+            ></a>
+          </p-card>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <br />
+  <div class="card" *ngIf="!loading && feedsObj.feeds.length > 0">
+    <p-paginator
+      #paginator1
+      (onPageChange)="paginate($event)"
+      [rows]="10"
+      [pageLinkSize]="2"
+      [totalRecords]="feedsObj.totalFeeds"
+      [first]="2"
+    ></p-paginator>
+  </div>
+</div>
+
+<ng-template #loadingCondition>
+  <p-progressSpinner
+    styleClass="w-4rem h-4rem"
+    strokeWidth="8"
+    fill="var(--surface-ground)"
+    animationDuration=".5s"
+  ></p-progressSpinner>
+</ng-template>

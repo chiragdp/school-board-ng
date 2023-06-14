@@ -1,0 +1,30 @@
+<div class="min-h-screen flex flex-column">
+  <p-menubar [model]="items" class="flex-none">
+    <ng-template pTemplate="start">
+      <a routerLink="/admin/dashboard"
+        ><img src="/assets/logo.png" height="60" class="mr-2"
+      /></a>
+    </ng-template>
+  </p-menubar>
+  <div class="surface-100 min-h-full p-2 flex-grow-1">
+    <div class="flex overflow-hidden gap-2 p-3 justify-content-center">
+      <div class="flex-none w-2 min-h-full">
+        <p-card class="min-h-full" header="Analytics">
+          <div class="flex flex-column gap-2">
+            <div class="col bg-blue-500 text-white p-4 border-round">
+              <p>Anouncements</p>
+              <h1>500</h1>
+            </div>
+            <div class="col bg-purple-400 text-white p-4 border-round">
+              <p>Users</p>
+              <h1>500</h1>
+            </div>
+          </div>
+        </p-card>
+      </div>
+      <div class="flex-grow-1 min-h-full">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
