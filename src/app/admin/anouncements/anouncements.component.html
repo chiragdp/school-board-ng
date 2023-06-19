@@ -1,7 +1,11 @@
+<p-toast></p-toast>
+
 <p-card>
   <p-confirmPopup></p-confirmPopup>
   <ng-template pTemplate="header">
-    <div class="p-4 pb-0 flex justify-content-between align-items-center">
+    <div
+      class="p-4 pb-0 flex flex-column gap-3 md:flex-row lg:flex-row justify-content-between align-items-center"
+    >
       <h2 class="m-0">Anouncements</h2>
       <a
         [routerLink]="['..', 'anouncements', 'new']"
@@ -12,7 +16,7 @@
       ></a>
     </div>
   </ng-template>
-  <p-table [value]="anouncements" [paginator]="true" [rows]="10">
+  <p-table [value]="anouncementsObj.anouncements" [rows]="10">
     <ng-template pTemplate="header">
       <tr>
         <th>id</th>
@@ -24,7 +28,13 @@
     <ng-template pTemplate="body" let-anouncement>
       <tr>
         <td>{{ anouncement.id }}</td>
-        <td>{{ anouncement.title }}</td>
+        <td>
+          <a
+            class="text-primary no-underline"
+            [routerLink]="['/feed/anouncements', anouncement.id]"
+            >{{ anouncement.title }}</a
+          >
+        </td>
         <td>{{ anouncement.uploadDate | date }}</td>
         <td class="flex gap-3">
           <a
@@ -39,10 +49,17 @@
             label="Delete"
             class="p-button-danger"
             pButton
-            (click)="confirm($event, anouncement.id)"
+            (click)="onDeleteButtonClick($event, anouncement.id)"
           ></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
+  <p-paginator
+    #paginator1
+    (onPageChange)="onPageChange($event)"
+    [rows]="10"
+    [pageLinkSize]="2"
+    [totalRecords]="anouncementsObj.total"
+  ></p-paginator>
 </p-card>

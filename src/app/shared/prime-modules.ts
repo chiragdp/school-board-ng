@@ -7,8 +7,9 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-import { ToastModule } from 'primeng/toast';
+import { DataViewModule } from 'primeng/dataview';
 import { PaginatorModule } from 'primeng/paginator';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 export const primeModules = [
   MenubarModule,
@@ -20,6 +21,7 @@ export const primeModules = [
   InputTextModule,
   EditorModule,
   ConfirmPopupModule,
-  ToastModule,
+  DataViewModule,
   PaginatorModule,
+  ProgressSpinnerModule,
 ];

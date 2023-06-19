@@ -1,5 +1,5 @@
 <div class="md:w-8 lg:w-8 mx-auto">
   <p-card [header]="feed.title">
-    <p [innerHTML]="feed.description"></p>
+    <div class="view-images" [innerHTML]="feed.description | safeHtml"></div>
   </p-card>
 </div>

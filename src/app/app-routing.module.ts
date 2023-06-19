@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './admin/layout/layout.component';
 import { FeedLayoutComponent } from './feed/feed-layout/feed-layout.component';
+import { AdminGaurd } from './guards/admin.guard';
+import { UserGaurd } from './guards/user.guard';
 
 const routes: Routes = [
   {
@@ -12,9 +14,11 @@ const routes: Routes = [
   {
     path: 'admin',
     component: LayoutComponent,
+    canLoad: [AdminGaurd],
     children: [
       {
         path: '',
+        canLoad: [AdminGaurd],
         loadChildren: () =>
           import('./admin/admin.module').then((module) => module.AdminModule),
       },
@@ -23,9 +27,11 @@ const routes: Routes = [
   {
     path: 'feed',
     component: FeedLayoutComponent,
+    canLoad: [UserGaurd],
     children: [
       {
         path: '',
+        canLoad: [UserGaurd],
         loadChildren: () =>
           import('./feed/feed.module').then((module) => module.FeedModule),
       },

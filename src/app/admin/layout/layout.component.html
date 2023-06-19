@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="min-h-screen flex flex-column">
   <p-menubar [model]="items" class="flex-none">
     <ng-template pTemplate="start">
@@ -7,10 +8,14 @@
     </ng-template>
   </p-menubar>
   <div class="surface-100 min-h-full p-2 flex-grow-1">
-    <div class="flex overflow-hidden gap-2 p-3 justify-content-center">
-      <div class="flex-none w-2 min-h-full">
+    <div
+      class="flex flex-column sm:flex-column md:flex-column lg:flex-row overflow-hidden gap-2 p-3 justify-content-center"
+    >
+      <div class="flex-none w-full lg:w-2 min-h-full">
         <p-card class="min-h-full" header="Analytics">
-          <div class="flex flex-column gap-2">
+          <div
+            class="flex flex-column sm:flex-row md:flex-column lg:flew-column gap-2"
+          >
             <div class="col bg-blue-500 text-white p-4 border-round">
               <p>Anouncements</p>
               <h1>500</h1>
@@ -23,6 +28,7 @@
         </p-card>
       </div>
       <div class="flex-grow-1 min-h-full">
+        <p-toast></p-toast>
         <router-outlet></router-outlet>
       </div>
     </div>

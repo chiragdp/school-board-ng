@@ -10,6 +10,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DataViewModule } from 'primeng/dataview';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DropdownModule } from 'primeng/dropdown';
 
 export const primeModules = [
   MenubarModule,
@@ -24,4 +25,5 @@ export const primeModules = [
   DataViewModule,
   PaginatorModule,
   ProgressSpinnerModule,
+  DropdownModule,
 ];

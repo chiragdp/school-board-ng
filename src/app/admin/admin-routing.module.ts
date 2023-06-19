@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FeedResolver } from '../feed/resolvers/feed.resolver';
 import { NewComponent } from './anouncements/new/new.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -16,6 +17,9 @@ const routes: Routes = [
   {
     path: 'anouncements/edit/:anouncementId',
     component: NewComponent,
+    resolve: {
+      anouncement: FeedResolver,
+    },
   },
   {
     path: '',

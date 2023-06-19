@@ -19,6 +19,14 @@ export class FeedResolver implements Resolve<FeedModel> {
     private feedService: FeedService,
     private domSanitizer: DomSanitizer
   ) {}
+
+  /**
+   * getting the anouncement from the server before viewing to the user
+   * if the anouncement not found then redirect to feed.
+   * @param route ActivatedRouteSnapshote
+   * @param state RouterStateSnapshot
+   * @returns FeedModel | Observable<FeedModel> | Promise<FeedModel>
+   */
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

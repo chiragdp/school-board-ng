@@ -7,6 +7,7 @@ export interface FilterFeedsOptions {
   _limit?: number;
   _sort?: string;
   _order?: 'asc' | 'desc';
+  _q?: string;
 }
 
 @Injectable({
@@ -15,6 +16,11 @@ export interface FilterFeedsOptions {
 export class FeedService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * gets the anouncements list from the backend server
+   * @param filters FilterFeedsOptions
+   * @returns <FeedModel[]>
+   */
   getFeeds(filters: FilterFeedsOptions) {
     return this.http.get<FeedModel[]>('/api/anouncements', {
       params: {
@@ -24,6 +30,11 @@ export class FeedService {
     });
   }
 
+  /**
+   * get the anouncement by id!
+   * @param id number
+   * @returns Observer<FeedModel>
+   */
   getFeedById(id: number) {
     return this.http.get<FeedModel>(`/api/anouncements/${id}`);
   }

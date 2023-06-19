@@ -6,20 +6,39 @@
     <ng-template pTemplate="header">
       <h2 class="m-0">Register</h2>
     </ng-template>
-    <div class="flex flex-column gap-2">
-      <label htmlFor="name">Name</label>
-      <input pInputText id="name" />
-      <label htmlFor="username">Username</label>
-      <input pInputText id="username" />
-      <label htmlFor="username">Password</label>
-      <p-password
-        styleClass="w-full"
-        inputStyleClass="w-full"
-        [feedback]="true"
-        [toggleMask]="true"
-      ></p-password>
-      <p-button label="Register" icon="pi pi-lock" iconPos="right"></p-button>
-    </div>
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="registerUser()"
+      class="flex flex-column gap-2"
+    >
+      <app-input
+        [control]="registerForm.controls.name"
+        InputType="text"
+        label="Name"
+      ></app-input>
+
+      <app-input
+        [control]="registerForm.controls.username"
+        InputType="text"
+        label="Username"
+      ></app-input>
+      <app-input
+        [control]="registerForm.controls.password"
+        InputType="password"
+        label="Password"
+        [passToggleMask]="true"
+      ></app-input>
+
+      <p-button
+        type="submit"
+        label="Register"
+        icon="pi pi-lock"
+        iconPos="right"
+        [style]="{ gap: '10px' }"
+        [disabled]="loading"
+        [loading]="loading"
+      ></p-button>
+    </form>
     <ng-template pTemplate="footer">
       <p class="text-center">
         Already have Account?

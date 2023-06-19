@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,6 +10,8 @@ import { MenuItem } from 'primeng/api';
 })
 export class LayoutComponent {
   items: MenuItem[] = [];
+
+  constructor(private router: Router, private userService: UserService) {}
   ngOnInit() {
     this.items = [
       {
@@ -29,6 +33,11 @@ export class LayoutComponent {
       {
         label: 'Logout',
         icon: 'pi pi-fw pi-power-off',
+        command: () => {
+          localStorage.clear();
+          this.userService.logout();
+          this.router.navigateByUrl('/auth/login');
+        },
       },
     ];
   }

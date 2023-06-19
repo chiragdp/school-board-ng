@@ -1,0 +1,46 @@
+<ng-container [ngSwitch]="InputType">
+  <div class="flex flex-column gap-2">
+    <ng-container *ngSwitchCase="'password'">
+      <label [htmlFor]="label">{{ label }}</label>
+      <p-password
+        styleClass="w-full"
+        inputStyleClass="w-full"
+        [feedback]="passFeedback"
+        [toggleMask]="passToggleMask"
+        [formControl]="control"
+      ></p-password>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'rte'">
+      <label [htmlFor]="label">{{ label }}</label>
+      <p-editor
+        [style]="{ height: '320px' }"
+        [formControl]="control"
+        [id]="label"
+      ></p-editor>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <label [htmlFor]="label">{{ label }}</label>
+      <input
+        pInputText
+        [id]="label"
+        [type]="InputType"
+        [formControl]="control"
+      />
+    </ng-container>
+
+    <ng-container *ngIf="control.errors">
+      <div class="text-red-400" *ngIf="showErrors()">
+        <p *ngIf="control.hasError('required')">Value is required!</p>
+        <p *ngIf="control.hasError('minlength')">
+          length must be {{ control.errors["minlength"].requiredLength }}
+        </p>
+        <p *ngIf="control.hasError('maxlength')">
+          length must be {{ control.errors["maxlength"].requiredLength }}
+        </p>
+        <p *ngIf="control.hasError('pattern')">Invalid Format!</p>
+        <p *ngIf="control.hasError('email')">Invalid Email!</p>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

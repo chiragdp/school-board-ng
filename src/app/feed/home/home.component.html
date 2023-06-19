@@ -1,11 +1,42 @@
 <div class="md:w-8 lg:w-8 mx-auto">
-  <h1>Feeds</h1>
+  <div
+    class="surface-0 p-2 pl-4 pr-4 flex flex-column sm:flex-column md:flex-column lg:flex-row justify-content-between"
+  >
+    <h1 class="text-center md:text-none">Feeds</h1>
+    <div
+      class="flex flex-column md:flex-row flex-content-center align-items-center gap-2 p-2"
+    >
+      <!-- defining the form for the search -->
+      <form
+        [formGroup]="searchForm"
+        (ngSubmit)="onSearchSubmit()"
+        class="p-inputgroup"
+      >
+        <input
+          type="text"
+          pInputText
+          placeholder="Keyword"
+          [formControl]="searchForm.controls.q"
+        />
+        <button type="submit" pButton label="Search"></button>
+      </form>
+
+      <p-dropdown
+        [options]="sortOptions"
+        optionLabel="name"
+        (onChange)="handleDropdown($event)"
+      ></p-dropdown>
+    </div>
+  </div>
+  <ng-container *ngIf="!loading && feedsObj.feeds.length <= 0">
+    <h2 class="text-center">No Anouncements Found!</h2>
+  </ng-container>
   <div class="feeds">
     <ng-container
-      *ngIf="!loading && feedsObj.feeds.length > 0; else loadingCondition"
+      *ngIf="!loading || feedsObj.feeds.length > 0; else loadingCondition"
     >
       <div *ngFor="let feed of feedsObj.feeds">
-        <div style="border: 1px solid black">
+        <div>
           <p-card [header]="feed.title">
             <a
               [routerLink]="['/feed', 'anouncements', feed.id]"
@@ -20,14 +51,14 @@
     </ng-container>
   </div>
   <br />
-  <div class="card" *ngIf="!loading && feedsObj.feeds.length > 0">
+  <div class="card">
     <p-paginator
       #paginator1
       (onPageChange)="paginate($event)"
       [rows]="10"
       [pageLinkSize]="2"
       [totalRecords]="feedsObj.totalFeeds"
-      [first]="2"
+      [first]="1"
     ></p-paginator>
   </div>
 </div>

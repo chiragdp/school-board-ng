@@ -1,27 +1,57 @@
-# Boards
+# Project in Angular (School Board)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+- This webapplication is build using the angular version 16
 
-## Development server
+## Features of Project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- `User Features`
+  - student can login/register into the board app
+  - user can view the anouncements
+  - user can search and sorts the anouncements
+- `Admin Features`
+  - admin can login into dashboard with following credentials
+    > `credentials`
+          username: chirag
+          password: chirag
+  - admin can view,create, update, delete the anouncements
+  - admin has rich text editor build into dashboard for better anouncement create
 
-## Code scaffolding
+## steps to use this project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+First clone this repo using the following command
 
-## Build
+```shell
+git clone https://github.com/chiragdp/school-board-ng.git
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+cd school-board-ng
 
-## Running unit tests
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+now there is 2 way of running this project
 
-## Running end-to-end tests
+### 1) using shell script
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+this project comes with `script.sh` file which can be used to run the project very easily
+simply run the following commands
 
-## Further help
+```shell
+chmod +x script.sh
+./script.sh
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+it will run the project very easily
+
+### 2) using npm script
+
+simply run the following command into your terminal
+
+```shell
+npm run start
+```
+
+## if you want to build the application for the production run the following command
+
+```shell
+npm run build:prod
+```
