@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { catchError, EMPTY, first, take, tap } from 'rxjs';
-import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { WhiteSpaceValidator } from 'src/app/validators/white-space-validator.validator';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -16,8 +16,18 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent {
   loading = false;
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    username: new FormControl(
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.minLength(5),
+        WhiteSpaceValidator.cannotContainSpace,
+      ])
+    ),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
   });
 
   constructor(

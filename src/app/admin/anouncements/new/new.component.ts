@@ -1,9 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ContentChildren,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { Anouncement } from 'src/app/models/anouncement.model';
+import { InputComponent } from 'src/app/shared/input/input.component';
+import { WhiteSpaceValidator } from 'src/app/validators/white-space-validator.validator';
 import { AnouncementService } from '../../services/anouncement.service';
 
 @Component({
@@ -20,12 +28,15 @@ export class NewComponent implements OnInit {
     title: new FormControl('', [Validators.required, Validators.minLength(5)]),
     description: new FormControl('', [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(20),
     ]),
     uploadDate: new FormControl(new Date().toISOString().substring(0, 10), [
       Validators.required,
     ]),
   });
+
+  @ViewChild(InputComponent) editorComponent!: any;
+  @ContentChildren(InputComponent) inputTemplate!: TemplateRef<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,8 +59,11 @@ export class NewComponent implements OnInit {
   }
 
   onAnouncementCreateSubmit() {
+    WhiteSpaceValidator.trimFields(this.anouncementForm.controls);
+
     if (this.anouncementForm.invalid) {
       Object.values(this.anouncementForm.controls).forEach((control) => {
+        control.setValue(control.value?.trim() || null);
         control.markAsDirty();
         control.updateValueAndValidity({ onlySelf: true });
       });
