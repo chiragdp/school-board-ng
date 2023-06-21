@@ -1,0 +1,81 @@
+<div class="md:w-8 lg:w-8 mx-auto">
+  <div
+    class="surface-0 p-2 pl-4 pr-4 flex flex-column sm:flex-column md:flex-column lg:flex-row justify-content-between"
+  >
+    <h1 class="text-center md:text-none">Feeds</h1>
+    <div
+      class="flex flex-column md:flex-row flex-content-center align-items-center gap-2 p-2"
+    >
+      <!-- defining the form for the search -->
+      <form
+        [formGroup]="searchForm"
+        (ngSubmit)="onSearchSubmit()"
+        class="p-inputgroup"
+      >
+        <input
+          type="text"
+          pInputText
+          placeholder="Keyword"
+          [formControl]="searchForm.controls.q"
+        />
+        <button type="submit" pButton label="Search"></button>
+      </form>
+
+      <p-dropdown
+        [options]="sortOptions"
+        optionLabel="name"
+        (onChange)="handleDropdown($event)"
+      ></p-dropdown>
+    </div>
+  </div>
+  <ng-container *ngIf="!loading && feedsObj.feeds.length <= 0">
+    <h2 class="text-center">No Anouncements Found!</h2>
+  </ng-container>
+  <div class="feeds">
+    <ng-container
+      *ngIf="!loading || feedsObj.feeds.length > 0; else loadingCondition"
+    >
+      <div *ngFor="let feed of feedsObj.feeds">
+        <div
+          class="shadow-3 bg-white p-3 flex flex-column align-items-stretch justify-content-between border-round h-full"
+        >
+          <div class="flex flex-column justify-content-between gap-2">
+            <p-badge
+              severity="success"
+              styleClass="p-mr-2"
+              [value]="feed.uploadDate | date"
+            ></p-badge>
+            <h4 class="m-0 mb-2">{{ feed.title }}</h4>
+          </div>
+          <a
+            [routerLink]="['/feed', 'anouncements', feed.id]"
+            pButton
+            label="View"
+            class="no-underline w-full"
+            icon="pi pi-eye"
+          ></a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <br />
+  <div class="card">
+    <p-paginator
+      #paginator1
+      (onPageChange)="paginate($event)"
+      [rows]="10"
+      [pageLinkSize]="2"
+      [totalRecords]="feedsObj.totalFeeds"
+      [first]="1"
+    ></p-paginator>
+  </div>
+</div>
+
+<ng-template #loadingCondition>
+  <p-progressSpinner
+    styleClass="w-4rem h-4rem"
+    strokeWidth="8"
+    fill="var(--surface-ground)"
+    animationDuration=".5s"
+  ></p-progressSpinner>
+</ng-template>

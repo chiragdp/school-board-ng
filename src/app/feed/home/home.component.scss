@@ -1,0 +1,19 @@
+@import "../../../styles/abstracts/mixins";
+
+.feeds {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  @include respond(tab-land) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(tab-port) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond(phone) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

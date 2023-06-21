@@ -1,0 +1,12 @@
+<div class="min-h-screen flex flex-column">
+  <p-menubar [model]="items" class="flex-none">
+    <ng-template pTemplate="start">
+      <a routerLink="/feed"
+        ><img src="/assets/logo.png" height="60" class="mr-2"
+      /></a>
+    </ng-template>
+  </p-menubar>
+  <div class="surface-100 min-h-full p-2 flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>

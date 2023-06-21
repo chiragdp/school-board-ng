@@ -1,0 +1,8 @@
+<div class="md:w-8 lg:w-8 mx-auto">
+  <div class="bg-white p-4 shadow-3 border-round">
+    <p-badge styleClass="p-mr-2" [value]="feed.uploadDate | date"></p-badge>
+    <h1 class="mt-1">{{ feed.title }}</h1>
+
+    <div class="view-images" [innerHTML]="feed.description | safeHtml"></div>
+  </div>
+</div>

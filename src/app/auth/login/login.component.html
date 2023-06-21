@@ -1,0 +1,48 @@
+<p-toast></p-toast>
+
+<div
+  class="flex justify-content-center min-h-screen align-items-center flex-column"
+>
+  <img src="/assets/logo.png" alt="logo" class="h-8rem -mb-6 z-1" />
+  <p-panel class="sm:w-full md:w-5 lg:w-3 xl:w-3 mt-2">
+    <ng-template pTemplate="header"> <h2 class="m-0">Login</h2> </ng-template>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="loginUser()"
+      class="flex flex-column gap-2"
+    >
+      <app-input
+        label="Username"
+        InputType="text"
+        [control]="loginForm.controls.username"
+      ></app-input>
+      <app-input
+        label="password"
+        InputType="password"
+        [control]="loginForm.controls.password"
+        [passToggleMask]="true"
+      ></app-input>
+      <p-button
+        label="Login"
+        icon="pi pi-lock"
+        type="submit"
+        [style]="{ gap: '10px' }"
+        [disabled]="loading"
+        [loading]="loading"
+        iconPos="right"
+      ></p-button>
+    </form>
+    <ng-template pTemplate="footer">
+      <p class="text-center">
+        New to Board?
+        <a routerLink="/auth/register" class="text-blue-500 no-underline"
+          >Register!</a
+        >
+      </p>
+    </ng-template>
+  </p-panel>
+</div>
+
+<ng-template #userLoginIcon>
+  <i class="pi pi-user" style="font-size: 2.5rem"></i>
+</ng-template>

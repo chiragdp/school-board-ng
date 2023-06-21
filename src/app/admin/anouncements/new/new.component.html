@@ -1,0 +1,39 @@
+<p-toast></p-toast>
+
+<p-panel
+  [header]="editMode ? 'Update Anouncement' : 'New Anouncement'"
+  styleClass="lg:w-8"
+>
+  <form
+    [formGroup]="anouncementForm"
+    (ngSubmit)="onAnouncementCreateSubmit()"
+    class="flex flex-column gap-2"
+  >
+    <app-input
+      InputType="text"
+      label="Title"
+      [control]="anouncementForm.controls.title"
+    ></app-input>
+    <app-input
+      #richTextEditor
+      InputType="rte"
+      label="Description"
+      [control]="anouncementForm.controls.description"
+    ></app-input>
+
+    <app-input
+      InputType="date"
+      label="Upload Date"
+      [control]="anouncementForm.controls.uploadDate"
+    ></app-input>
+
+    <p-button
+      [label]="editMode ? 'Update' : 'Create'"
+      icon="pi pi-pencil"
+      iconPos="right"
+      type="submit"
+      [loading]="loading"
+      [disabled]="loading"
+    ></p-button>
+  </form>
+</p-panel>
